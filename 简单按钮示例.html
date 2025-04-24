@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>简单按钮示例</title>
+    <style>
+        /* 简单的按钮样式 */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 按钮元素 -->
+    <button onclick="showMessage()">点击这里</button>
+
+    <script>
+        // JavaScript 点击事件处理函数
+        function showMessage() {
+            alert("你点击了按钮！");
+            // 如果要修改页面内容，可以这样：
+            // document.body.innerHTML += "<p>按钮被点击了！</p>";
+            let _url = "https://sapiads.oppomobie.com/v1/clue/sendData";
+            const response = fetch(_url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer Bearer MTAwMDU3MTY1Niw2YmFiMDUyNTc3MzM0OTczYjExYmY4OTI1OWIyZjIyMiwxNzQ1NDA3NTMyLGQwZGFlOWVkYmNkYzMxMTRlOWY0MDNjZTNhZWRmY2M4YzExMDdhYTA=`,
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: { "owner_id": 1000571656, "ip": "120.41.220.150", "tid": 1, "transformType": 101 },
+            });
+        }
+    </script>
+</body>
+
+</html>
