@@ -30,6 +30,7 @@
         // JavaScript 点击事件处理函数
         import { createHash } from "crypto";
         function showMessage() {
+          try{
             alert("你点击了按钮！");
             // 如果要修改页面内容，可以这样：
             // document.body.innerHTML += "<p>按钮被点击了！</p>";
@@ -54,6 +55,9 @@
                 },
                 body: { "owner_id": 1000571656, "ip": "120.41.220.150", "tid": 1, "transformType": 101 },
             });
+          }catch(e){
+            alert(e)
+          }
         }
     </script>
 </body>
