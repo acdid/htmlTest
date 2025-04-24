@@ -20,6 +20,7 @@
             background-color: #45a049;
         }
     </style>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +42,9 @@
             let _timestamp = Math.floor(Date.now() / 1000);
             let _sign = `${_api_id}${_api_key}${_timestamp}`;
             alert(_sign);
-            let _signSha1 = crypto.createHash('sha1').update(_sign).digest('hex');
+            let hash =  CryptoJS.SHA1(_sign) ;
+			alert(hash);
+			const _signSha1 = hash.toString(CryptoJS.enc.Hex);
 			alert(_signSha1);
             let _token = `${_owner_id},${_api_id},${_timestamp},${_signSha1}`;
 			alert(_token);
