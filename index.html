@@ -28,15 +28,28 @@
 
     <script>
         // JavaScript 点击事件处理函数
+        import { createHash } from "crypto";
         function showMessage() {
             alert("你点击了按钮！");
             // 如果要修改页面内容，可以这样：
             // document.body.innerHTML += "<p>按钮被点击了！</p>";
+
+            let _owner_id = 1000571656;
+            let _api_id = "6bab052577334973b11bf89259b2f222";
+            let _api_key = "6e71ae3488f34ca9ac8d56d1e45206a4";
+            let _timestamp = Math.floor(Date.now() / 1000);
+            let _sign = `${_api_id}${_api_key}${_timestamp}`;
+
+            let _signSha1 = createHash('sha1').update(_sign).digest('hex');
+            let _token = `${_owner_id},${_api_id},${_timestamp},${_signSha1}`;
+
+            let _tokenBase64 = btoa(_token);
+
             let _url = "https://sapiads.oppomobie.com/v1/clue/sendData";
-			fetch(_url, {
+            fetch(_url, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer Bearer MTAwMDU3MTY1Niw2YmFiMDUyNTc3MzM0OTczYjExYmY4OTI1OWIyZjIyMiwxNzQ1NDA3NTMyLGQwZGFlOWVkYmNkYzMxMTRlOWY0MDNjZTNhZWRmY2M4YzExMDdhYTA=`,
+                    'Authorization': `Bearer ${_tokenBase64}`,
                     'Content-Type': 'application/json;charset=UTF-8'
                 },
                 body: { "owner_id": 1000571656, "ip": "120.41.220.150", "tid": 1, "transformType": 101 },
