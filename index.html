@@ -39,12 +39,12 @@
             let _api_key = "6e71ae3488f34ca9ac8d56d1e45206a4";
             let _timestamp = Math.floor(Date.now() / 1000);
             let _sign = `${_api_id}${_api_key}${_timestamp}`;
-
+            alert(_sign);
             let _signSha1 = createHash('sha1').update(_sign).digest('hex');
             let _token = `${_owner_id},${_api_id},${_timestamp},${_signSha1}`;
 
             let _tokenBase64 = btoa(_token);
-
+            alert(_tokenBase64);
             let _url = "https://sapiads.oppomobie.com/v1/clue/sendData";
             fetch(_url, {
                 method: 'POST',
